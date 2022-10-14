@@ -12,5 +12,3 @@ awk -F, '$12 $13 $14 $15 ~ /[[:alnum:]]/ { print $0 }' Movies.csv > Movies1.csv
 
 awk -F, '$12 $13 $14 $15 ~ /[[:alnum:]]/ { print $0 }' Shows.csv > Shows1.csv
 
-hola
-
