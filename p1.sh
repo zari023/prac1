@@ -12,6 +12,10 @@ awk -F, '$12 $13 $14 $15 ~ /[[:alnum:]]/ { print $0 }' Movies.csv > Movies1.csv
 
 awk -F, '$12 $13 $14 $15 ~ /[[:alnum:]]/ { print $0 }' Shows.csv > Shows1.csv
 
-awk -F, 'NR==13{max = $13 + 0; next} {if ($13 > max) max = $13;}' Movies1.csv
+h=$(awk -F, 'BEGIN {max=0*1.0} { if ( $13*0.1 > max*1.0) max=$13} END {print max}' Shows1.csv)
 
-awk -F, '{ print $0","$12*($13/999.0)}' Movies1.csv > Movies2.csv
+awk -F, -v var1=$h '{ print $0","$12*($13/var1)}' Shows1.csv > Shows2.csv
+
+m=$(awk -F, 'BEGIN {max=0*1.0} { if ( $14*0.1 > max*1.0) max=$14} END {print max}' Shows1.csv)
+
+awk -F, -v var2=$m '{ print $0","$12*($14/var2)}' Shows2.csv > Shows3.csv
